@@ -29,3 +29,14 @@ export const fetchAllProducts = async () => {
       throw error;
     }
   };
+
+  export const fetchAllCategories = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/products/categories`);
+      const data = await handleResponse(response);
+      return data;
+    } catch (error) {
+      console.error("Error fetching product categories", error);
+      throw error;
+    }
+  };
