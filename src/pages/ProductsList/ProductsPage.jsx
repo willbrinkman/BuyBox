@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { fetchAllProducts } from "../services/api";
+import { fetchAllProducts } from "../../services/api.js";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -28,6 +28,19 @@ const ProductsPage = () => {
   return (
     <div>
       <h1>Products</h1>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            <img
+              src={product.image}
+              alt={product.title}
+              className="product-image"
+            />
+            <h3>{product.title}</h3>
+            <p>Price: ${product.price}</p>{" "}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
