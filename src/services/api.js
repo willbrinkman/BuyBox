@@ -1,5 +1,9 @@
 const BASE_URL = "https://fakestoreapi.com/";
 
+const JSON_HEADERS = {
+    'Content-Type': 'application/json'
+};
+
 const handleResponse = async (response) => {
   if (!response.ok) {
     throw new Error("Server error");
@@ -44,6 +48,7 @@ export const loginUser = async (username, password) => {
   try {
     const response = await fetch(`${BASE_URL}/auth/login`, {
       method: "POST",
+      headers: JSON_HEADERS,
       body: JSON.stringify({
         user: {
           username,
@@ -58,33 +63,11 @@ export const loginUser = async (username, password) => {
   }
 };
 
-export const loginUser = async (username, password) => {
-  try {
-    const response = await fetch(`${BASE_URL}/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-    });
-    return handleResponse(response);
-  } catch (error) {
-    console.error(`Error logging in user: ${username}:`, error);
-    throw error;
-  }
-};
-
-
 export const createCart = async (userId, date, products) => {
   try {
     const response = await fetch(`${BASE_URL}/carts`, {
       method: "POST",
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: JSON_HEADERS,
       body: JSON.stringify({
           userId: userId,
           date: date,
