@@ -8,13 +8,24 @@ const handleResponse = async (response) => {
 };
 
 
-export const fetchProducts = async () => {
+export const fetchAllProducts = async () => {
     try {
       const response = await fetch(`${BASE_URL}/products`);
       const data = await handleResponse(response);
       return data;
     } catch (error) {
       console.error("Error fetching products:", error);
+      throw error;
+    }
+  };
+
+  export const fetchSingleProduct = async (id) => {
+    try {
+      const response = await fetch(`${BASE_URL}/products/${id}`);
+      const data = await handleResponse(response);
+      return data;
+    } catch (error) {
+      console.error("Error fetching product with ID: ${id}:", error);
       throw error;
     }
   };
