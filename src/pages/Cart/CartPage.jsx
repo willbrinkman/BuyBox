@@ -2,10 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CartContext";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { fetchSingleProduct } from "../../services/api";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const { cart, removeFromCart, updateCart } = useContext(CartContext);
-  const [cartProducts, setCartProducts] = useState([]); 
+  const [cartProducts, setCartProducts] = useState([]);
 
   useEffect(() => {
     async function loadCartProducts() {
@@ -18,10 +19,10 @@ const CartPage = () => {
         );
         setCartProducts(productDetails);
       } catch (error) {
-        console.error('Error loading cart products:', error);
+        console.error("Error loading cart products:", error);
       }
     }
-  
+
     loadCartProducts();
   }, [cart]);
 
@@ -29,20 +30,27 @@ const CartPage = () => {
     <div>
       <h1>Your Cart</h1>
       {cartProducts.length > 0 ? (
-        cartProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            initialQuantity={product.quantity}
-            showDetail={false}
-            showAdjust={true}
-            onUpdateCart={updateCart}
-            onRemove={() => removeFromCart(product.id)}
-            showRemove={true}
-          />
-        ))
+        <>
+          <div>
+            {cartProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                initialQuantity={product.quantity}
+                showDetail={false}
+                showAdjust={true}
+                onUpdateCart={updateCart}
+                onRemove={() => removeFromCart(product.id)}
+                showRemove={true}
+              />
+            ))}
+            <Link to="/checkout">Proceed to Checkout</Link>
+          </div>
+        </>
       ) : (
-        <p>Your cart is empty. Click <a href="/">here</a> to return to home.</p>
+        <p>
+          Your cart is empty. Click <a href="/">here</a> to return to home.
+        </p>
       )}
     </div>
   );
