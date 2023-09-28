@@ -6,7 +6,8 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [priceRange, setPriceRange] = useState([0, Infinity]);
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState("");
+  const [sort, setSort] = useState("");
 
   useEffect(() => {
     async function loadProducts() {
@@ -37,9 +38,25 @@ const ProductsPage = () => {
   }, []);
 
   const displayedProducts = products
-  .filter(product => category ? product.category === category : true)
-  .filter(product => product.price >= priceRange[0] && product.price <= priceRange[1])
-  });
+    .filter((product) => (category ? product.category === category : true))
+    .filter(
+      (product) =>
+        product.price >= priceRange[0] && product.price <= priceRange[1]
+    )
+    .sort((a, b) => {
+      switch (sort) {
+        case "asc":
+          return a.title.localeCompare(b.title);
+        case "desc":
+          return b.title.localeCompare(a.title);
+        case "priceLowHigh":
+          return a.price - b.price;
+        case "priceHighLow":
+          return b.price - a.price;
+        default:
+          return 0;
+      }
+    });
 
   if (error) return <p>Error: {error}</p>;
   if (loading) return <p>Loading...</p>;
@@ -76,6 +93,16 @@ const ProductsPage = () => {
             setPriceRange([priceRange[0], Number(e.target.value)])
           }
         />
+      </label>
+      <label>
+        Sort By:
+        <select value={sort} onChange={(e) => setSort(e.target.value)}>
+          <option value="">Select...</option>
+          <option value="asc">A-Z</option>
+          <option value="desc">Z-A</option>
+          <option value="priceLowHigh">Low to High</option>
+          <option value="priceHighLow">High to Low</option>
+        </select>
       </label>
       <ul>
         {displayedProducts.map((product) => (
