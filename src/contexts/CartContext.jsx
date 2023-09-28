@@ -16,8 +16,20 @@ export const CartProvider = ({ children }) => {
         sessionStorage.setItem('cart', JSON.stringify(cart));
       }, [cart]);
 
+      const addToCart = (product, quantity) => {
+        setCart([...cart, { product, quantity }]);
+      };
+
+      const removeFromCart = (productId) => {
+        setCart(cart.filter(item => item.product.id !== productId));
+      };
+    
+      const clearCart = () => {
+        setCart([]);
+        sessionStorage.removeItem('cart');
+      };
 return (
-    <cartContext.Provider>
+    <cartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
         {children}
     </cartContext.Provider>
 )
