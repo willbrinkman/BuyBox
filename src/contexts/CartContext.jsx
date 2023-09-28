@@ -28,9 +28,9 @@ export const CartProvider = ({ children }) => {
         }
       };
     
-      const updateCart = (productId, quantity) => {
+      const updateCart = (productId, newQuantity) => {
         const updatedCart = cart.map(item => 
-          item.product.id === productId ? { ...item, quantity } : item
+          item.product.id === productId ? { ...item, quantity: newQuantity } : item
         );
         setCart(updatedCart);
       };

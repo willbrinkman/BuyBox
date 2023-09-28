@@ -7,6 +7,7 @@ import { CartProvider } from "./contexts/CartContext";
 import CartPage from "./pages/Cart/CartPage";
 import Navbar from "./components/Navbar/Navbar";
 import ProductDetailPage from "./pages/ProductDetail/ProductDetailPage";
+import CheckoutPage from "./pages/Checkout/CheckoutPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           {/* <Route path="*" element={<NotFound />} /> */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" elkement={<CheckoutPage />} />
           </Routes>
         </BrowserRouter>
         </CartProvider>
