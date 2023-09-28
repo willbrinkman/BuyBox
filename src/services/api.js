@@ -50,10 +50,8 @@ export const loginUser = async (username, password) => {
       method: "POST",
       headers: JSON_HEADERS,
       body: JSON.stringify({
-        user: {
           username,
           password,
-        },
       }),
     });
     return handleResponse(response);
