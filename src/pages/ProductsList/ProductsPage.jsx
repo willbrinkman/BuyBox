@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchAllProducts } from "../../services/api.js";
+import { fetchAllProducts, fetchAllCategories } from "../../services/api.js";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -21,6 +21,19 @@ const ProductsPage = () => {
     loadProducts();
   }, []);
 
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    async function fetchCategories() {
+      try {
+        const cat = await fetchAllCategories();
+        setCategories(cat);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchCategories();
+  }, []);
+
   if (error) return <p>Error: {error}</p>;
   if (loading) return <p>Loading...</p>;
   if (!products.length) return <p>No products found.</p>;
@@ -28,6 +41,17 @@ const ProductsPage = () => {
   return (
     <div>
       <h1>Products</h1>
+      <label>
+        Category:
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="">All Categories</option>
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+      </label>
       <ul>
         {products.map((product) => (
           <li key={product.id}>
