@@ -17,7 +17,22 @@ export const CartProvider = ({ children }) => {
       }, [cart]);
 
       const addToCart = (product, quantity) => {
-        setCart([...cart, { product, quantity }]);
+        const existingProductIndex = cart.findIndex(item => item.product.id === product.id);
+    
+        if (existingProductIndex !== -1) {
+          const updatedCart = [...cart];
+          updatedCart[existingProductIndex].quantity += quantity;
+          setCart(updatedCart);
+        } else {
+          setCart(prevCart => [...prevCart, { product, quantity }]);
+        }
+      };
+    
+      const updateCart = (productId, quantity) => {
+        const updatedCart = cart.map(item => 
+          item.product.id === productId ? { ...item, quantity } : item
+        );
+        setCart(updatedCart);
       };
 
       const removeFromCart = (productId) => {
@@ -29,7 +44,7 @@ export const CartProvider = ({ children }) => {
         sessionStorage.removeItem('cart');
       };
 return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, updateCart, addToCart, removeFromCart, clearCart }}>
         {children}
     </CartContext.Provider>
 )
