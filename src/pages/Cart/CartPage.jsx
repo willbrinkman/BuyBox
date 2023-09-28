@@ -21,7 +21,7 @@ const CartPage = () => {
           />
         ))
       ) : (
-        <p>Your cart is empty</p>
+        <p>Your cart is empty. Click <a href="/">here</a> to return to home.</p>
       )}
     </div>
   );

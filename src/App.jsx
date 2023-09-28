@@ -5,6 +5,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 import LoginPage from "./pages/Login/LoginPage";
 import { CartProvider } from "./contexts/CartContext";
 import CartPage from "./pages/Cart/CartPage";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
       <AuthProvider>
         <CartProvider>
         <BrowserRouter>
-          {/* <Navbar /> */}
+          <Navbar />
           <Routes>
             <Route path="/" element={<ProductsPage />} />
             {/* <Route path="/:id" element={<ProductDetail />} />

@@ -20,19 +20,23 @@ export const AuthProvider = ({ children }) => {
       sessionStorage.setItem("authToken", userToken);
       setToken(userToken);
       setIsAuthenticated(true);
+      alert('Sucessfully logged in')
+
+      return true;
     } catch (error) {
       console.error("Failed to log in", error);
-      throw error;
+      return false;
     }
   };
   const logout = () => {
     sessionStorage.removeItem("authToken");
     setToken(null);
     setIsAuthenticated(false);
+    alert('Sucessfully logged out')
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
