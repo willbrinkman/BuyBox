@@ -40,10 +40,16 @@ const CartPage = () => {
                 initialQuantity={product.quantity}
                 showDetail={false}
                 showAdjust={true}
+<<<<<<< HEAD
                 onAddToCart={addToCart}
                 onRemove={handleRemove}
                 showRemove={true}
                 isInCart={true}
+=======
+                onUpdateCart={updateCart}
+                onRemove={() => removeFromCart(product.id)}
+                showRemove={true}
+>>>>>>> 36bf5ae (implemented checkout page and functionality)
               />
             ))}
             <Link to="/checkout">Proceed to Checkout</Link>
@@ -51,7 +57,11 @@ const CartPage = () => {
         </>
       ) : (
         <p>
+<<<<<<< HEAD
           Your cart is empty. Click <Link to="/">here</Link> to return to home.
+=======
+          Your cart is empty. Click <a href="/">here</a> to return to home.
+>>>>>>> 36bf5ae (implemented checkout page and functionality)
         </p>
       )}
     </div>
