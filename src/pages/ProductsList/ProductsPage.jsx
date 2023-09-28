@@ -5,6 +5,8 @@ const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [priceRange, setPriceRange] = useState([0, Infinity]);
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     async function loadProducts() {
@@ -34,6 +36,11 @@ const ProductsPage = () => {
     fetchCategories();
   }, []);
 
+  const displayedProducts = products
+  .filter(product => category ? product.category === category : true)
+  .filter(product => product.price >= priceRange[0] && product.price <= priceRange[1])
+  });
+
   if (error) return <p>Error: {error}</p>;
   if (loading) return <p>Loading...</p>;
   if (!products.length) return <p>No products found.</p>;
@@ -52,8 +59,26 @@ const ProductsPage = () => {
           ))}
         </select>
       </label>
+      <label>
+        Price Range:
+        <input
+          type="number"
+          value={priceRange[0]}
+          onChange={(e) =>
+            setPriceRange([Number(e.target.value), priceRange[1]])
+          }
+        />
+        to
+        <input
+          type="number"
+          value={priceRange[1]}
+          onChange={(e) =>
+            setPriceRange([priceRange[0], Number(e.target.value)])
+          }
+        />
+      </label>
       <ul>
-        {products.map((product) => (
+        {displayedProducts.map((product) => (
           <li key={product.id}>
             <img
               src={product.image}
