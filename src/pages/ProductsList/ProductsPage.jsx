@@ -106,11 +106,11 @@ const ProductsPage = () => {
           <option value="priceHighLow">High to Low</option>
         </select>
       </label>
-      <ul>
+      <ul className="container">
         {displayedProducts.map((product) => (
-          <li key={product.id}>
-          <Link to={`/products/${product.id}`}>
-            <ProductCard
+          <li key={product.id} className="product-card">
+          <Link to={`/products/${product.id}` }>
+            <ProductCard 
               product={product}
               showDetail={false}
               showAdjust={false}
