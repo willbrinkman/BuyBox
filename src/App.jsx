@@ -3,11 +3,14 @@ import "./styles/main.css";
 import ProductsPage from "./pages/ProductsList/ProductsPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import LoginPage from "./pages/Login/LoginPage";
+import { CartProvider } from "./contexts/CartContext";
+import CartPage from "./pages/Cart/CartPage";
 
 function App() {
   return (
     <>
       <AuthProvider>
+        <CartProvider>
         <BrowserRouter>
           {/* <Navbar /> */}
           <Routes>
@@ -16,8 +19,10 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} /> */}
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/cart" element={<CartPage />} />
           </Routes>
         </BrowserRouter>
+        </CartProvider>
       </AuthProvider>
     </>
   );

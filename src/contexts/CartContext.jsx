@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 
-export const cartContext = createContext();
+export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
@@ -29,9 +29,10 @@ export const CartProvider = ({ children }) => {
         sessionStorage.removeItem('cart');
       };
 return (
-    <cartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
         {children}
-    </cartContext.Provider>
+    </CartContext.Provider>
 )
 
 };
+

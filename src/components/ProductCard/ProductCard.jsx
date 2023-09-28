@@ -3,7 +3,7 @@ import { useState } from "react";
 const ProductCard = ({
   product,
   showDetail,
-  showAdjust
+  showAdjust,
   onUpdateCart,
   onRemove,
   showRemove,
