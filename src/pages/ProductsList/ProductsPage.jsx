@@ -114,7 +114,6 @@ const ProductsPage = () => {
               product={product}
               showDetail={false}
               showAdjust={false}
-              // Pass other required props
             />
           </Link>
         </li>
