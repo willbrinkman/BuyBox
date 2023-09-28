@@ -1,12 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./styles/main.css";
 import ProductsPage from "./pages/ProductsList/ProductsPage";
-import { AuthContext } from "./contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import LoginPage from "./pages/Login/LoginPage";
 
 function App() {
   return (
     <>
-      <AuthContext>
+      <AuthProvider>
         <BrowserRouter>
           {/* <Navbar /> */}
           <Routes>
@@ -14,9 +15,10 @@ function App() {
             {/* <Route path="/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} /> */}
+          <Route path="/login" element={<LoginPage />} />
           </Routes>
         </BrowserRouter>
-      </AuthContext>
+      </AuthProvider>
     </>
   );
 }
