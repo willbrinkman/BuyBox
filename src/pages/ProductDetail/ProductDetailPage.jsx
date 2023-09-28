@@ -5,15 +5,29 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 
 const ProductDetailPage = () => {
   const { productId } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [product, setProduct] = useState(null);
 
+  useEffect(() => {
+    async function loadProducts() {
+      try {
+        const data = await fetchSingleProduct(productId);
+        setProduct(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-  return (
-    <ProductCard 
-      product={product}
-      showDetail={true}
-      showAdjust={false}
-    />
-  );
+    loadProducts();
+  }, []);
+
+  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p>Loading...</p>;
+
+  return <ProductCard product={product} showDetail={true} showAdjust={false} />;
 };
 
 export default ProductDetailPage;
