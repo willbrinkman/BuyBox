@@ -77,7 +77,7 @@ const ProductsPage = () => {
         </select>
       </label>
       <label>
-        Price Range:
+        Min: $
         <input
           type="number"
           value={priceRange[0]}
@@ -85,7 +85,7 @@ const ProductsPage = () => {
             setPriceRange([Number(e.target.value), priceRange[1]])
           }
         />
-        to
+        Max: $
         <input
           type="number"
           value={priceRange[1]}
