@@ -4,7 +4,7 @@ import { fetchSingleProduct } from "../../services/api";
 import ProductCard from "../../components/ProductCard/ProductCard";
 
 const ProductDetailPage = () => {
-  const { productId } = useParams();
+  const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [product, setProduct] = useState(null);
@@ -12,7 +12,7 @@ const ProductDetailPage = () => {
   useEffect(() => {
     async function loadProducts() {
       try {
-        const data = await fetchSingleProduct(productId);
+        const data = await fetchSingleProduct(id);
         setProduct(data);
       } catch (err) {
         setError(err.message);
