@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    background: linear-gradient(to left, black, silver);
+}
+
 .product-image {
     max-width: 100px;
 }
