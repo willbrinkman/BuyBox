@@ -3,6 +3,7 @@ import { useState } from "react";
 const ProductCard = ({
   product,
   showDetail,
+  showAdjust,
   onUpdateCart,
   onRemove,
   showRemove,
@@ -27,7 +28,7 @@ const ProductCard = ({
       <h3>{product.title}</h3>
       <p>Price: ${product.price}</p>
       {showDetail && <p>{product.description}</p>}
-      {showDetail && ( // Changed from showAdjust to showDetail
+      {showAdjust && (
         <>
           <div className="quantity-adjuster">
             <button onClick={handleDecrement} disabled={quantity <= 1}>
