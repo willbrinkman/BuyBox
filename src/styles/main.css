@@ -1,6 +1,7 @@
 body {
   margin: 0;
   background: linear-gradient(to left, #252525, silver);
+  height: 100%;
 }
 
 ul {
