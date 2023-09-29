@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
-import { fetchSingleProduct } from "../../services/api";
-import ProductCard from "../../components/ProductCard/ProductCard";
-import { CartContext } from "../../contexts/CartContext";
+import { useNavigate, useParams } from "react-router-dom";
+import { fetchSingleProduct } from "../services/api";
+import ProductCard from "../components/ProductCard";
+import { CartContext } from "../contexts/CartContext";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -10,6 +10,7 @@ const ProductDetailPage = () => {
   const [error, setError] = useState(null);
   const [product, setProduct] = useState(null);
   const { cart, addToCart } = useContext(CartContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadProducts() {
@@ -29,7 +30,17 @@ const ProductDetailPage = () => {
   if (error) return <p>Error: {error}</p>;
   if (loading) return <p>Loading...</p>;
 
-  return <ProductCard product={product} showDetail={true} onAddToCart={addToCart} />;
+  return (
+      <ProductCard
+        product={product}
+        isLarge={true}
+        showDetail={true}
+        onAddToCart={(product) => {
+          addToCart(product, 1);
+          navigate("/cart");
+        }}
+      />
+  );
 };
 
 export default ProductDetailPage;

@@ -1,6 +1,15 @@
 body {
   margin: 0;
-  background: linear-gradient(to left, black, silver);
+  background: linear-gradient(to left, #252525, silver);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  list-style: none;
 }
 
 .product-image {
@@ -12,64 +21,62 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .product-card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-  padding: 10px;
+  margin: 10px;
+  padding: 30px;
   border: 3px solid teal;
-  width: 30%;
+  width: 300px;
+  min-height: 300px;
   border-radius: 1em;
-  text-decoration: none; 
-}
-.product-card h3, .product-card p{
-  color: inherit;
   text-decoration: none;
-}
-.product-card-element {
-  color: inherit;
-  text-decoration: none;
+  word-wrap: break-word;
 }
 
-.title {
-text-align: center;
+.product-card.large {
   width: 60%;
-  border-radius: 1em;
-  text-decoration: none; 
+  margin: 0 auto;
 }
-.product-card h3, .product-card p{
-  color: inherit;
-  text-decoration: none;
-}
-.product-card-element {
+
+.product-link {
   color: inherit;
   text-decoration: none;
 }
 
 .title {
-text-align: center;
+  text-align: center;
+  font-size: 3em;
+}
+.center-text {
+  text-align: center;
+  font-size: 1.5em;
 }
 
 input {
     padding: 10px;
     margin: 5px;
     border: 1px solid #cccccc;
+    border: 1px solid #cccccc;
     border-radius: 4px;
     font-size: 12px;
     color: #393939;
+    color: #393939;
   }
 
-  
 select {
     padding: 10px;
     margin: 5px;
     border: 1px solid #cccccc;
+    border: 1px solid #cccccc;
     border-radius: 4px;
     font-size: 12px;
+    color: #333333;
     color: #333333;
     cursor: pointer;
   }
@@ -85,6 +92,7 @@ select {
     font-size: 16px;
     cursor: pointer;
   }
+
 
   .navbar {
     background-color: #343434; 

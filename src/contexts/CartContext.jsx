@@ -38,17 +38,20 @@ export const CartProvider = ({ children }) => {
     setCart(updatedCart);
   };
 
-  const removeFromCart = (product, action) => {
-    const existingProductIndex = cart.findIndex(
-      (item) => item.product.id === product.id
+  const removeFromCart = (productId, action) => {
+    const productIndex = cart.findIndex(
+      (item) => item.product.id === productId
     );
 
-    if (action === "decrement" && existingProductIndex !== -1) {
+    if (productIndex === -1) return;
+
+    if (action === "decrement" && cart[productIndex].quantity > 1) {
       const updatedCart = [...cart];
-      updatedCart[existingProductIndex].quantity -= 1;
+      updatedCart[productIndex].quantity -= 1;
       setCart(updatedCart);
-    } else if (action === "remove") {
-      setCart(cart.filter((item) => item.product.id !== product.id));
+    } else if (action === "remove" || cart[productIndex].quantity === 1) {
+      const updatedCart = cart.filter((item) => item.product.id !== productId);
+      setCart(updatedCart);
     }
   };
 

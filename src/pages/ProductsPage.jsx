@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { fetchAllProducts, fetchAllCategories } from "../../services/api.js";
+import { fetchAllProducts, fetchAllCategories } from "../services/api.js";
 import { Link } from "react-router-dom";
-import ProductCard from "../../components/ProductCard/ProductCard.jsx";
+import ProductCard from "../components/ProductCard.jsx";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -66,6 +66,7 @@ const ProductsPage = () => {
 
   return (
     <div>
+      <div>
       <h1 className="title">Products</h1>
       <label>
         Category:
@@ -106,17 +107,18 @@ const ProductsPage = () => {
           <option value="priceHighLow">High to Low</option>
         </select>
       </label>
+      </div>
       <ul className="container">
         {displayedProducts.map((product) => (
-          <li key={product.id} className="product-card">
-          <Link to={`/products/${product.id}` }>
-            <ProductCard 
-              product={product}
-              showDetail={false}
-              showAdjust={false}
-            />
-          </Link>
-        </li>
+          <li key={product.id} >
+            <Link className="product-link" to={`/products/${product.id}`}>
+              <ProductCard
+                product={product}
+                showDetail={false}
+                showAdjust={false}
+              />
+            </Link>
+          </li>
         ))}
       </ul>
     </div>
