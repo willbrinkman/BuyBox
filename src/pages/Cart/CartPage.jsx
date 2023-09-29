@@ -19,6 +19,7 @@ const CartPage = () => {
         );
         setCartProducts(productDetails);
         console.log(cartProducts);
+        console.log(cartProducts);
       } catch (error) {
         console.error("Error loading cart products:", error);
       }
@@ -49,6 +50,7 @@ const CartPage = () => {
                 onUpdateCart={updateCart}
                 onRemove={() => removeFromCart(product.id)}
                 showRemove={true}
+                isInCart={true}
 >>>>>>> 36bf5ae (implemented checkout page and functionality)
               />
             ))}
@@ -57,6 +59,7 @@ const CartPage = () => {
         </>
       ) : (
         <p>
+          Your cart is empty. Click <Link to="/">here</Link> to return to home.
 <<<<<<< HEAD
           Your cart is empty. Click <Link to="/">here</Link> to return to home.
 =======

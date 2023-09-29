@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../contexts/CartContext";
+import { Link } from "react-router-dom";
 
 const CheckoutPage = () => {
     const { cart, clearCart } = useContext(CartContext);
@@ -10,7 +11,7 @@ const CheckoutPage = () => {
         clearCart();
     };
 
-    if (!cart || cart.length === 0) return <p>Your cart is empty.</p>;
+    if (!cart || cart.length === 0) return <p>Your cart is empty. Click <Link to="/">here</Link> to return to home.</p>;
 
     return (
         <div>
