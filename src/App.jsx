@@ -22,7 +22,7 @@ function App() {
           {/* <Route path="*" element={<NotFound />} /> */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkout" elkement={<CheckoutPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
           </Routes>
         </BrowserRouter>
         </CartProvider>
