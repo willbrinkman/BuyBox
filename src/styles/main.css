@@ -22,6 +22,21 @@ body {
   margin-bottom: 10px;
   padding: 10px;
   border: 3px solid teal;
+  width: 30%;
+  border-radius: 1em;
+  text-decoration: none; 
+}
+.product-card h3, .product-card p{
+  color: inherit;
+  text-decoration: none;
+}
+.product-card-element {
+  color: inherit;
+  text-decoration: none;
+}
+
+.title {
+text-align: center;
   width: 60%;
   border-radius: 1em;
 }
@@ -51,8 +66,24 @@ select {
     margin: 5px;
     border: none;
     border-radius: 4px;
-    background-color: teal;
+    background-color: #027e7e;
     color: #ffffff;
     font-size: 16px;
     cursor: pointer;
+  }
+  .navbar {
+    background-color: #343434; 
+    overflow: hidden; 
+    font-family: Arial, sans-serif; 
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .navbar a {
+    float: left; 
+    display: block; 
+    color: #f2efef; 
+    text-align: center; 
+    padding: 14px 20px; 
+    text-decoration: none; 
   }

@@ -1,22 +1,30 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+
 
 const Navbar = () => {
     const { isAuthenticated, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+      logout()
+      navigate("/")
+    }
+
 
   return (
-    <nav>
+    <nav className="navbar">
       <div>
         <Link to="/">
-          <h1>BuyBox</h1>
+          BuyBox
         </Link>
       </div>
       <div className="navbar-right">
         {isAuthenticated ? (
           <>
             <Link to="/cart">View Cart</Link>
-            <button onClick={logout}>Logout</button>
+            <button onClick={handleLogout}>Logout</button>
           </>
         ) : (
           <Link to="/login">Login</Link>

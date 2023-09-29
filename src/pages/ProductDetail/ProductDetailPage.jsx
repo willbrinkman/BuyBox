@@ -29,7 +29,7 @@ const ProductDetailPage = () => {
   if (error) return <p>Error: {error}</p>;
   if (loading) return <p>Loading...</p>;
 
-  return <ProductCard product={product} showDetail={true} showAdjust={true}  onUpdateCart={addToCart} />;
+  return <ProductCard product={product} showDetail={true} onAddToCart={addToCart} />;
 };
 
 export default ProductDetailPage;

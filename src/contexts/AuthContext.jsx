@@ -2,9 +2,10 @@ import { createContext, useState, useEffect } from "react";
 import { loginUser } from "../services/api";
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children, onLogout }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(false);
+
 
   useEffect(() => {
     const storedToken = sessionStorage.getItem("authToken");
@@ -20,7 +21,7 @@ export const AuthProvider = ({ children }) => {
       sessionStorage.setItem("authToken", userToken);
       setToken(userToken);
       setIsAuthenticated(true);
-      alert('Sucessfully logged in')
+      alert("Sucessfully logged in");
 
       return true;
     } catch (error) {
@@ -32,7 +33,7 @@ export const AuthProvider = ({ children }) => {
     sessionStorage.removeItem("authToken");
     setToken(null);
     setIsAuthenticated(false);
-    alert('Sucessfully logged out')
+    alert("Sucessfully logged out");
   };
 
   return (

@@ -66,7 +66,7 @@ const ProductsPage = () => {
 
   return (
     <div>
-      <h1>Products</h1>
+      <h1 className="title">Products</h1>
       <label>
         Category:
         <select value={category} onChange={(e) => setCategory(e.target.value)}>

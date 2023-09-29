@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
     const [username, setUsername] = useState('');
@@ -19,7 +19,7 @@ return (
 <div>
   {isAuthenticated ? (
     <div>
-      <p> You are already logged in, click <a href="/">here</a> to return to home.</p>
+      <p> You are already logged in, click <Link to="/">here</Link>  to return to home.</p>
       <button onClick={logout}>Logout</button>
       </div>
   ) : (

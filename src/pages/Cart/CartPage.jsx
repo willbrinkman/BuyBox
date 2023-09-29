@@ -18,6 +18,7 @@ const CartPage = () => {
           })
         );
         setCartProducts(productDetails);
+        console.log(cartProducts);
       } catch (error) {
         console.error("Error loading cart products:", error);
       }
@@ -28,7 +29,7 @@ const CartPage = () => {
 
   return (
     <div>
-      <h1>Your Cart</h1>
+      <h1 className="title">Your Cart</h1>
       {cartProducts.length > 0 ? (
         <>
           <div>
@@ -39,9 +40,10 @@ const CartPage = () => {
                 initialQuantity={product.quantity}
                 showDetail={false}
                 showAdjust={true}
-                onUpdateCart={updateCart}
-                onRemove={() => removeFromCart(product.id)}
+                onAddToCart={addToCart}
+                onRemove={handleRemove}
                 showRemove={true}
+                isInCart={true}
               />
             ))}
             <Link to="/checkout">Proceed to Checkout</Link>
@@ -49,7 +51,7 @@ const CartPage = () => {
         </>
       ) : (
         <p>
-          Your cart is empty. Click <a href="/">here</a> to return to home.
+          Your cart is empty. Click <Link to="/">here</Link> to return to home.
         </p>
       )}
     </div>
