@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { CartContext } from "../../contexts/CartContext";
-import ProductCard from "../../components/ProductCard/ProductCard";
-import { fetchSingleProduct } from "../../services/api";
-import { Link } from "react-router-dom";
+import { CartContext } from "../contexts/CartContext";
+import ProductCard from "../components/ProductCard";
+import { fetchSingleProduct } from "../services/api";
+import { Link, useNavigate } from "react-router-dom";
 
 const CartPage = () => {
-  const { cart, removeFromCart, updateCart } = useContext(CartContext);
+  const { cart, removeFromCart, clearCart } =
+    useContext(CartContext);
   const [cartProducts, setCartProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadCartProducts() {
@@ -18,7 +20,6 @@ const CartPage = () => {
           })
         );
         setCartProducts(productDetails);
-        console.log(cartProducts);
       } catch (error) {
         console.error("Error loading cart products:", error);
       }
@@ -26,6 +27,15 @@ const CartPage = () => {
 
     loadCartProducts();
   }, [cart]);
+
+  const totalCost = cart
+    .reduce((total, item) => total + item.product.price * item.quantity, 0)
+    .toFixed(2);
+  const handleCheckout = () => {
+    alert(`Checkout confirmed for $${totalCost}`);
+    clearCart();
+    navigate("/");
+  };
 
   return (
     <div>
@@ -37,20 +47,19 @@ const CartPage = () => {
               <ProductCard
                 key={product.id}
                 product={product}
+                isLarge={true}
                 initialQuantity={product.quantity}
                 showDetail={false}
-                showAdjust={true}
-                onAddToCart={addToCart}
-                onRemove={handleRemove}
-                showRemove={true}
                 isInCart={true}
+                onRemove={(product) => removeFromCart(product.id, "remove")}
               />
             ))}
-            <Link to="/checkout">Proceed to Checkout</Link>
+            <p>Total Cost: ${totalCost}</p>
+            <button onClick={handleCheckout}>Confirm Checkout</button>
           </div>
         </>
       ) : (
-        <p>
+        <p className="center-text">
           Your cart is empty. Click <Link to="/">here</Link> to return to home.
         </p>
       )}

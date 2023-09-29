@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { loginUser } from "../services/api";
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children, onLogout }) => {
+export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(false);
 
@@ -21,7 +21,6 @@ export const AuthProvider = ({ children, onLogout }) => {
       sessionStorage.setItem("authToken", userToken);
       setToken(userToken);
       setIsAuthenticated(true);
-      alert("Sucessfully logged in");
 
       return true;
     } catch (error) {
