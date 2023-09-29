@@ -37,25 +37,27 @@ body {
 
 .title {
 text-align: center;
+  width: 60%;
+  border-radius: 1em;
 }
 
 input {
     padding: 10px;
     margin: 5px;
-    border: 1px solid #cccccc;
+    border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 12px;
-    color: #393939;
+    color: #333;
   }
 
   
 select {
     padding: 10px;
     margin: 5px;
-    border: 1px solid #cccccc;
+    border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 12px;
-    color: #333333;
+    color: #333;
     cursor: pointer;
   }
   
@@ -69,7 +71,6 @@ select {
     font-size: 16px;
     cursor: pointer;
   }
-
   .navbar {
     background-color: #343434; 
     overflow: hidden; 
